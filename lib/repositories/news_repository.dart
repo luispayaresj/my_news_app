@@ -51,7 +51,7 @@ class NewsRepository {
       ),
     ];
 
-    if(categoryId == ""){
+    if(categoryId == "" || categoryId == "latest"){
       return allNews;
     }else {
       return allNews.where((news) => news.categoryId == categoryId).toList();

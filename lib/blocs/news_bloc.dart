@@ -27,5 +27,8 @@ class NewsBloc extends Bloc<NewsEvent, NewsState> {
         emit(NewsError());
       }
     });
+
+    add(const LoadNews('latest'));
+
   }
 }
