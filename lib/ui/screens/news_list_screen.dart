@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../blocs/news_bloc.dart';
-import '../../blocs/news_event.dart';
+//import '../../blocs/news_event.dart';
 import '../../blocs/news_state.dart';
-import '../../widgets/news_card.dart';
-import '../../widgets/category_selector.dart';
+import '../widgets/news_card.dart';
+import '../widgets/category_selector.dart';
 import '../../repositories/news_repository.dart';
 
 class NewsListScreen extends StatelessWidget {
