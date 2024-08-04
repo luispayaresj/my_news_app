@@ -2,13 +2,21 @@ import '../models/news.dart';
 import '../models/category.dart';
 
 class NewsRepository {
-  final List<Category> categories = [
-    Category(id: 'latest', name: 'Latest News'),
-    Category(id: 'politics', name: 'Politics'),
-    Category(id: 'economy', name: 'Economy'),
-    Category(id: 'sports', name: 'Sports'),
-    Category(id: 'technology', name: 'Technology'),
-  ];
+
+
+  List<Category> getCategories(){
+      List<Category> categories = [
+      Category(id: 'latest', name: 'Latest News'),
+      Category(id: 'politics', name: 'Politics'),
+      Category(id: 'economy', name: 'Economy'),
+      Category(id: 'sports', name: 'Sports'),
+      Category(id: 'technology', name: 'Technology'),
+    ];
+
+    return categories;
+  }
+
+  
 
   List<News> getNewsByCategory(String categoryId) {
     // Datos "quemados" de ejemplo
@@ -48,6 +56,6 @@ class NewsRepository {
     }else {
       return allNews.where((news) => news.categoryId == categoryId).toList();
       }
-      
+
   }
 }
