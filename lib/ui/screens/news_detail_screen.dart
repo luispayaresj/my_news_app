@@ -12,20 +12,22 @@ class NewsDetailScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text(news.title),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Image.network(news.imageUrl),
-            SizedBox(height: 8),
-            Text(news.title, style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
-            SizedBox(height: 8),
-            Text(news.description),
-            SizedBox(height: 8),
-            Text('Published on: ${news.date.toLocal()}'),
-            Text('Category: ${news.categoryId}'),
-          ],
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Image.network(news.imageUrl),
+              SizedBox(height: 8),
+              Text(news.title, style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+              SizedBox(height: 8),
+              Text(news.description),
+              SizedBox(height: 8),
+              Text('Published on: ${news.date.toLocal()}'),
+              Text('Category: ${news.categoryId}'),
+            ],
+          ),
         ),
       ),
     );
