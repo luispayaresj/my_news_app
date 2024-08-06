@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:my_news_app/models/news.dart';
 
 abstract class NewsEvent extends Equatable {
   const NewsEvent();
@@ -23,4 +24,19 @@ class SearchNews extends NewsEvent {
 
   @override
   List<Object> get props => [query];
+}
+
+class AddNews extends NewsEvent {
+  final News news;
+  const AddNews(this.news);
+}
+
+class UpdateNews extends NewsEvent {
+  final News news;
+  const UpdateNews(this.news);
+}
+
+class DeleteNews extends NewsEvent {
+  final String id;
+  const DeleteNews(this.id);
 }

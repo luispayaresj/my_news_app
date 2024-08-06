@@ -7,9 +7,22 @@ class NewsBloc extends Bloc<NewsEvent, NewsState> {
   final NewsRepository newsRepository;
 
   NewsBloc(this.newsRepository) : super(NewsLoading()) {
+
     on<LoadNews>((event, emit) async {
       try {
         final news = newsRepository.getNewsByCategory(event.categoryId);
+        emit(NewsLoaded(news));
+      } catch (_) {
+        emit(NewsError());
+      }
+    });
+
+    add(const LoadNews('latest'));
+
+    on<AddNews>((event, emit) async {
+      try {
+        newsRepository.addNews(event.news);
+        final news = newsRepository.getNewsByCategory('latest');
         emit(NewsLoaded(news));
       } catch (_) {
         emit(NewsError());
@@ -28,7 +41,7 @@ class NewsBloc extends Bloc<NewsEvent, NewsState> {
       }
     });
 
-    add(const LoadNews('latest'));
+    
 
   }
 }

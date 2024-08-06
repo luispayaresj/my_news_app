@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:my_news_app/ui/screens/add_news_screen.dart';
 import '../../blocs/news_bloc.dart';
 //import '../../blocs/news_event.dart';
 import '../../blocs/news_state.dart';
@@ -31,7 +32,7 @@ class NewsListScreen extends StatelessWidget {
             child: BlocBuilder<NewsBloc, NewsState>(
               builder: (context, state) {
                 if (state is NewsLoading) {
-                  return Center(child: CircularProgressIndicator());
+                  return const Center(child: CircularProgressIndicator());
                 } else if (state is NewsLoaded) {
                   return ListView.builder(
                     itemCount: state.news.length,
@@ -40,7 +41,7 @@ class NewsListScreen extends StatelessWidget {
                     },
                   );
                 } else {
-                  return Center(child: Text('Failed to fetch news'));
+                  return const Center(child: Text('Failed to fetch news'));
                 }
               },
             ),
@@ -48,9 +49,15 @@ class NewsListScreen extends StatelessWidget {
         ],
       ),
     floatingActionButton: FloatingActionButton(
-      onPressed: (){},
-      child: const Icon(Icons.add),
+      onPressed: (){
+         Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (context) => const AddNewsPage(),
+            ),
+          );
+      },
       tooltip: 'Add News',
+      child: const Icon(Icons.add),
       ),
     );
   }
