@@ -47,6 +47,11 @@ class NewsListScreen extends StatelessWidget {
           ),
         ],
       ),
+    floatingActionButton: FloatingActionButton(
+      onPressed: (){},
+      child: const Icon(Icons.add),
+      tooltip: 'Add News',
+      ),
     );
   }
 }
