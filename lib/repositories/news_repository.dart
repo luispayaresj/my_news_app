@@ -63,6 +63,14 @@ class NewsRepository {
     allNews.add(news);
   }
 
+  void updateNews(News news, News newNews) {
+    for (var i = 0; i < allNews.length; i++) {
+      if (allNews[i] == news) {
+        allNews[i] = newNews;
+      }
+    }
+  }
+
   void deleteNews(News news) {
     allNews.remove(news);
     print(allNews);

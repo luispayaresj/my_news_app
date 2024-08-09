@@ -33,7 +33,8 @@ class AddNews extends NewsEvent {
 
 class UpdateNews extends NewsEvent {
   final News news;
-  const UpdateNews(this.news);
+  final News newNews;
+  const UpdateNews(this.news, this.newNews);
 }
 
 class DeleteNews extends NewsEvent {

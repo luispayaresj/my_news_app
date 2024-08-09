@@ -10,7 +10,7 @@ class AddNewsPage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Add News'),
       ),
-      body: const NewsForm(),
+      body: NewsForm(),
     );
   }
 }

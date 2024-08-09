@@ -29,6 +29,16 @@ class NewsBloc extends Bloc<NewsEvent, NewsState> {
       }
     });
 
+    on<UpdateNews>((event, emit) async {
+      try {
+        newsRepository.updateNews(event.news, event.newNews);
+        final news = newsRepository.getNewsByCategory('latest');
+        emit(NewsLoaded(news));
+      } catch (_) {
+        emit(NewsError());
+      }
+    });
+
     on<DeleteNews>((event, emit) async {
       try {
         newsRepository.deleteNews(event.news);

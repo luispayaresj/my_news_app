@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:my_news_app/blocs/news_event.dart';
 import 'package:my_news_app/ui/screens/add_news_screen.dart';
 import '../../blocs/news_bloc.dart';
 //import '../../blocs/news_event.dart';
@@ -8,8 +9,21 @@ import '../widgets/news_card.dart';
 import '../widgets/category_selector.dart';
 import '../../repositories/news_repository.dart';
 
-class NewsListScreen extends StatelessWidget {
+class NewsListScreen extends StatefulWidget {
+  @override
+  State<NewsListScreen> createState() => _NewsListScreenState();
+}
+
+class _NewsListScreenState extends State<NewsListScreen> {
   final NewsRepository newsRepository = NewsRepository();
+
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    // Dispatch event to load news whenever this widget's dependencies change.
+    BlocProvider.of<NewsBloc>(context).add(const LoadNews("latest"));
+  }
 
   @override
   Widget build(BuildContext context) {

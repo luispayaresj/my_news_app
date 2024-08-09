@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_news_app/blocs/news_bloc.dart';
 import 'package:my_news_app/blocs/news_event.dart';
+import 'package:my_news_app/ui/screens/edit_news_screen.dart';
 import '../../models/news.dart';
 import '../screens/news_detail_screen.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -57,7 +58,12 @@ class NewsCard extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         IconButton(onPressed: (){
-                          
+                           Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => EditNewsScreen(news: news),
+                              ),
+                            );
                         }, icon: const Icon(Icons.edit)),
                         IconButton(onPressed: (){
                            BlocProvider.of<NewsBloc>(context).add(DeleteNews(news));

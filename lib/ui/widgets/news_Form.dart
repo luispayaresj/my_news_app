@@ -11,8 +11,10 @@ import 'package:my_news_app/repositories/news_repository.dart';
 class NewsForm extends StatefulWidget {
   
 
-  const NewsForm({super.key});
+  NewsForm({super.key,  this.news});
 
+  final News? news;
+  
   @override
   _NewsFormState createState() => _NewsFormState();
 }
@@ -37,8 +39,8 @@ class _NewsFormState extends State<NewsForm> {
         imageUrl: _imageUrlController.text,
         categoryId: _selectedCategory.id,
       );
-      BlocProvider.of<NewsBloc>(context)
-                    .add(AddNews(newNews));
+      
+      widget.news != null ? BlocProvider.of<NewsBloc>(context).add(UpdateNews(widget.news!,newNews)) : BlocProvider.of<NewsBloc>(context).add(AddNews(newNews));
       Navigator.of(context).pop();
     }
   }
@@ -59,7 +61,22 @@ class _NewsFormState extends State<NewsForm> {
   }
 
   @override
+  void initState() {
+    if(widget.news != null){
+
+      _titleController.text = widget.news!.title;
+      _descriptionController.text =  widget.news!.description;
+      _imageUrlController.text =  widget.news!.imageUrl;
+      _selectedCategory = categories.firstWhere((element)=> element.id == widget.news?.categoryId);
+      _selectedDate = widget.news!.date;
+
+    }
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
+     News? news = widget.news;
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: Form(
@@ -110,8 +127,28 @@ class _NewsFormState extends State<NewsForm> {
                 ),
               ],
             ),
+
+            news != null ? 
+
             DropdownButtonFormField<Category>(
-              //value: _selectedCategory,
+              value: _selectedCategory ,
+              decoration: InputDecoration(labelText: 'Category'),
+              items: categories.map((category) {
+                return DropdownMenuItem(
+                  value: category,
+                  child: Text(category.name),
+                );
+              }).toList(),
+              onChanged: (value) {
+                setState(() {
+                  _selectedCategory = value!;
+                });
+              },
+            )
+            :
+
+          DropdownButtonFormField<Category>(
+              
               decoration: InputDecoration(labelText: 'Category'),
               items: categories.map((category) {
                 return DropdownMenuItem(
