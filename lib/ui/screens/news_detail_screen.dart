@@ -11,6 +11,10 @@ class NewsDetailScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(news.title),
+        actions: [
+          IconButton(onPressed: (){}, icon: const Icon(Icons.edit)),
+          IconButton(onPressed: (){}, icon: const Icon(Icons.delete))
+        ],
       ),
       body: SingleChildScrollView(
         child: Padding(

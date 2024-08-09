@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:my_news_app/blocs/news_bloc.dart';
+import 'package:my_news_app/blocs/news_event.dart';
 import '../../models/news.dart';
 import '../screens/news_detail_screen.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -50,6 +53,17 @@ class NewsCard extends StatelessWidget {
                       'Published: ${news.date.toLocal()}',
                       style: TextStyle(color: Colors.grey),
                     ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        IconButton(onPressed: (){
+                          
+                        }, icon: const Icon(Icons.edit)),
+                        IconButton(onPressed: (){
+                           BlocProvider.of<NewsBloc>(context).add(DeleteNews(news));
+                        }, icon: const Icon(Icons.delete))
+                      ],
+                    )
                   ],
                 ),
               ),

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import '../models/news.dart';
 import '../models/category.dart';
 
@@ -61,6 +63,10 @@ class NewsRepository {
     allNews.add(news);
   }
 
+  void deleteNews(News news) {
+    allNews.remove(news);
+    print(allNews);
+  }
 
 
   

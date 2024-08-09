@@ -37,6 +37,6 @@ class UpdateNews extends NewsEvent {
 }
 
 class DeleteNews extends NewsEvent {
-  final String id;
-  const DeleteNews(this.id);
+  final News news;
+  const DeleteNews(this.news);
 }
